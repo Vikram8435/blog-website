@@ -31,12 +31,13 @@ export const updatePost = async (request, response) => {
 
 export const deletePost = async (request, response) => {
     try {
-        const post = await Post.findById(request.params.id);
+        const post = await Post.findById(request.body.postid);
         
         await post.delete()
 
         response.status(200).json('post deleted successfully');
     } catch (error) {
+        console.log('error',error)
         response.status(500).json(error)
     }
 }

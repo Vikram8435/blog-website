@@ -20,6 +20,10 @@ axiosInstance.interceptors.request.use(
         } else if (config.TYPE.query) {
             config.url = config.url + '/' + config.TYPE.query;
         }
+        // else if(config.method=='DELETE'){
+        //     config.url=config.url
+        //     config.data=
+        // }
         return config;
     },
     function(error) {
@@ -118,7 +122,7 @@ for (const [key, value] of Object.entries(SERVICE_URLS)) {
         axiosInstance({
             method: value.method,
             url: value.url,
-            data: value.method === 'DELETE' ? '' : body,
+            data: value.method === 'DELETE' ? body : body,
             responseType: value.responseType,
             headers: {
                 authorization: getAccessToken(),

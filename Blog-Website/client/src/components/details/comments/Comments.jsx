@@ -42,15 +42,18 @@ const Comments = ({ post }) => {
     const { account } = useContext(DataContext);
 
     useEffect(() => {
-        const getData = async () => {
-            const response = await API.getAllComments(post._id);
-            if (response.isSuccess) {
-                setComments(response.data);
-            }
-        }
-        getData();
-    }, [toggle, post]);
+      if(post._id!=undefined){
 
+      
+     getData();}
+    }, [toggle, post]);
+    const getData = async () => {
+        console.log('getting comments',post._id)
+        const response = await API.getAllComments(post._id);
+        if (response.isSuccess) {
+            setComments(response.data);
+        }
+    }
     const handleChange = (e) => {
         setComment({
             ...comment,
